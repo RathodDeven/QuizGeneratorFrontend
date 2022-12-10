@@ -18,7 +18,7 @@ const Sidebar = () => {
         title="File"
         Icon={() => <GrDocumentUpload />}
       />
-      <SidebarMenuItem href="/video" title="Video" Icon={() => <BiVideo />} />
+      <SidebarMenuItem href="/video" title="Media" Icon={() => <BiVideo />} />
     </div>
   )
 }

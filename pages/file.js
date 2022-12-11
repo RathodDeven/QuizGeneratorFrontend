@@ -1,12 +1,15 @@
 import React, { useState } from 'react'
 import { AiOutlineClose, AiOutlineUpload } from 'react-icons/ai'
 import { uploadFileToFirebaseAndGetUrl } from '../util/util'
+import 'https://npmcdn.com/pdfjs-dist/build/pdf.js'
 
 const file = () => {
   const [file, setFile] = useState(null)
+  const [fileUrl, setFileUrl] = useState(null)
 
   const handleFile = (e) => {
     setFile(e.target.files[0])
+    setFileUrl(URL.createObjectURL(e.target.files[0]))
   }
   const removeFile = () => {
     setFile(null)
@@ -14,19 +17,52 @@ const file = () => {
 
   const uploadFileAndGenerateQuiz = async () => {
     if (!file) return
+    // try {
+    //   console.log('start upload file')
+    //   // const url = await uploadFileToFirebaseAndGetUrl(file)
+    //   console.log('finished uploading file')
+    //   // console.log('url', url)
+    //   // alert('upload file success, url: ' + url)
+
+    //   //todo: call api to generate quiz
+    // } catch (error) {
+    //   console.log(error)
+    // }
+  }
+  const generateQuizFromFile = async () => {
+    if (!file) return
     try {
-      console.log('start upload file')
-      const url = await uploadFileToFirebaseAndGetUrl(file)
-      console.log('finished uploading file')
-      console.log('url', url)
-
-      alert('upload file success, url: ' + url)
-
-      //todo: call api to generate quiz
+      const text = await getPdfText({ url: fileUrl })
+      console.log('text', text)
     } catch (error) {
       console.log(error)
     }
   }
+
+  // async function getPdfText(data) {
+  //   // let doc = await pdfjsLib.getDocument({ data }).promise
+  //   // let pageTexts = Array.from({ length: doc.numPages }, async (v, i) => {
+  //   //   return (await (await doc.getPage(i + 1)).getTextContent()).items
+  //   //     .map((token) => token.str)
+  //   //     .join('')
+  //   // })
+  //   // return (await Promise.all(pageTexts)).join('')
+  //   var pdf = pdfjsLib.getDocument(data)
+  //   const page = pdf.getPage(1)
+  //   const text = page.then(function (page) {
+  //     var textContent = page.getTextContent()
+  //     return textContent.then(function (text) {
+  //       return text.items
+  //         .map(function (s) {
+  //           return s.str
+  //         })
+  //         .join('')
+  //     })
+  //   })
+
+  //   console.log('text', text)
+  //   return text
+  // }
   return (
     <div>
       <h3 className="text-2xl font-bold w-full text-center mt-20">
@@ -64,7 +100,7 @@ const file = () => {
             type="file"
             id="file"
             name="file"
-            accept=".txt"
+            accept=".txt, .pdf"
             hidden
             onChange={handleFile}
           />
@@ -73,9 +109,9 @@ const file = () => {
               file ? 'bg-black' : 'bg-gray-300'
             }  text-white rounded-[50px] py-2 px-4 text-xl `}
             disabled={!file}
-            onClick={uploadFileAndGenerateQuiz}
+            onClick={generateQuizFromFile}
           >
-            Upload and Generate Quiz
+            Generate Quiz
           </button>
         </div>
       </div>

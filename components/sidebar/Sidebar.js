@@ -30,7 +30,7 @@ const Sidebar = () => {
         title="Text"
         Icon={() => <BsCardText />}
       />
-      <SidebarMenuItem
+      {/* <SidebarMenuItem
         active={router.route === '/file'}
         href="/file"
         title="File"
@@ -41,7 +41,7 @@ const Sidebar = () => {
         href="/media"
         title="Media"
         Icon={() => <BiVideo />}
-      />
+      /> */}
     </div>
   )
 }

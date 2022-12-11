@@ -1,0 +1,4 @@
+{
+  "https://npmcdn.com/pdfjs-dist/build/pdf.js": { "resolved": "https://npmcdn.com/pdfjs-dist@3.1.81/build/pdf.js", "integrity": "sha512-O4jFGuee9yutwujWYl+wkB8pp2t05+ouF7sf72QqmLOVdJrZRFac8MRlZDW5b+cjGhx7tdp+Pq3WQAESKwyAoA==", "contentType": "application/javascript; charset=utf-8" },
+  "version": 1
+}

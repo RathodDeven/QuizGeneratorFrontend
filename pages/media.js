@@ -42,7 +42,7 @@ const video = () => {
   return (
     <div>
       <h3 className="text-2xl font-bold w-full text-center mt-20">
-        Generator Quiz from Media (Video & Audio)
+        Generate Quiz from Media (Video & Audio)
       </h3>
       {/* input file */}
       <div className="w-full flex justify-center mt-10 w-full">

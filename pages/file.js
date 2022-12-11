@@ -30,7 +30,7 @@ const file = () => {
   return (
     <div>
       <h3 className="text-2xl font-bold w-full text-center mt-20">
-        Generator Quiz from Text (.txt, .pdf) file
+        Generate Quiz from Text file
       </h3>
       {/* input file */}
       <div className="w-full flex justify-center mt-10 w-full">

@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from 'react-icons/ai'
+import { HiOutlineSpeakerWave } from 'react-icons/hi'
 
 const QuizCard = ({
   quiz,
@@ -12,6 +13,9 @@ const QuizCard = ({
   showFinalResult
 }) => {
   const [rotate, setRotate] = useState(false)
+  const [synth, setSynth] = useState(
+    window?.speechSynthesis ? window.speechSynthesis : null
+  )
   const textAreaRef = useRef(null)
 
   useEffect(() => {
@@ -22,9 +26,17 @@ const QuizCard = ({
     }
   }, [quiz])
 
+  useEffect(() => {
+    if (window) {
+      if (window.speechSynthesis) {
+        setSynth(window.speechSynthesis)
+      }
+    }
+  }, [])
+
   const QuizNextAndPrevButton = ({ onClickNextButton, onClickPrevButton }) => {
     return (
-      <div className="flex flex-row gap-x-4 items-center justify-center h-[100px]">
+      <div className="flex flex-row gap-x-4 items-center justify-center mt-[60px]">
         <div
           className="w-[250px] h-[50px] border-2 py-2 rounded-lg flex items-center justify-center text-xl mb-4"
           onClick={() => {
@@ -59,12 +71,23 @@ const QuizCard = ({
     totalPoints
   }) => {
     return (
-      <div className="grid grid-cols-3 w-full mt-4">
-        <div></div>
+      <div className="flex flex-row justify-around items-center w-full mt-4">
+        <div
+          className="rounded-full hover:bg-gray-300 w-fit p-2"
+          onClick={() => {
+            if (synth) {
+              const utterThis = new SpeechSynthesisUtterance(quiz.question)
+              synth.speak(utterThis)
+            }
+          }}
+        >
+          {/* <HiOutlineSpeakerWave className="hover:bg-gray-300 rounded-full" /> */}
+          <img src="/voice.png" alt="voice" className="w-8 h-8 " />
+        </div>
         <div className="text-xl justify-self-center self-center text-gray-400">
           {currentQuestion + 1 + '/' + totalQuestions}
         </div>
-        <div className="ml-8">Points : {totalPoints}</div>
+        <div>Points : {totalPoints}</div>
       </div>
     )
   }

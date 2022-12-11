@@ -45,7 +45,7 @@ const QuizCard = ({
   const [rotate, setRotate] = useState(false)
   return (
     <div>
-      <div className="w-[600px] h-[550px] m-8 cursor-pointer perspective">
+      <div className="w-[600px] h-[600px]  m-8 cursor-pointer perspective">
         {!showFinalResult && (
           <div
             className={`${

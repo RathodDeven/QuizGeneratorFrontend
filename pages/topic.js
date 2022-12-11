@@ -15,17 +15,24 @@ const topic = () => {
   }
   const generateQuiz = async () => {
     if (topic === '' || generating) return
+    setGeneratedQuiz(null)
     setGenerating(true)
     console.log('generate quiz')
     console.log(topic)
 
     const response = await generateQuizFromTopic(topic)
     console.log('response', response)
+    if (!response) {
+      setGenerating(false)
+      alert('Something went wrong, please try again')
+      return
+    }
 
     const quiz = treatRawQuizData(response)
     console.log('quiz', quiz)
 
     setGeneratedQuiz(quiz)
+
     setGenerating(false)
   }
 

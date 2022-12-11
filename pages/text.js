@@ -44,7 +44,7 @@ const text = () => {
   return (
     <div>
       <h3 className="text-2xl font-bold w-full text-center mt-20">
-        Generate a Quiz from Texts
+        Generate a Quiz from Text
       </h3>
       <div className="w-full mt-10 flex flex-row justify-around items-center pr-10">
         <div className="w-full flex flex-col justify-center items-center w-full">
@@ -63,7 +63,7 @@ const text = () => {
           {/* textare for text */}
           <textarea
             className="border-2 rounded-xl p-4 border-black mb-4"
-            placeholder="Paste your text here"
+            placeholder="Paste or Type your text here"
             ref={textAreaRef}
             disabled={generating}
             rows={10}

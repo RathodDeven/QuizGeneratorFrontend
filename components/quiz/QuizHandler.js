@@ -7,14 +7,38 @@ const QuizHandler = ({ quiz }) => {
   const [totalPoints, setTotalPoints] = useState(0)
   const [showFinalResult, setShowFinalResult] = useState(false)
 
-  const handleOnClickNextButton = () => {
+  const handleOnClickNextButton = (textAnswer) => {
+    if (
+      data.questions[currentQuestion].options.length === 0 &&
+      textAnswer &&
+      data.questions[currentQuestion]?.textAnswer !== textAnswer &&
+      typeof textAnswer === 'string'
+    ) {
+      console.log('textAnswer', textAnswer)
+      //update data
+      let tempData = data
+      tempData.questions[currentQuestion].textAnswer = textAnswer
+      setData(tempData)
+    }
     if (currentQuestion === data.questions.length - 1) {
       setShowFinalResult(true)
       return
     }
     setCurrentQuestion(currentQuestion + 1)
   }
-  const handleOnClickPrevButton = () => {
+  const handleOnClickPrevButton = (textAnswer) => {
+    if (
+      data.questions[currentQuestion].options.length === 0 &&
+      textAnswer &&
+      data.questions[currentQuestion]?.textAnswer !== textAnswer &&
+      typeof textAnswer === 'string'
+    ) {
+      console.log('textAnswer', textAnswer)
+      //updat data
+      let tempData = data
+      tempData.questions[currentQuestion].textAnswer = textAnswer
+      setData(tempData)
+    }
     if (currentQuestion === 0) return
     if (showFinalResult) {
       setShowFinalResult(false)

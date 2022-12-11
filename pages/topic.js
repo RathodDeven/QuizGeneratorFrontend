@@ -46,6 +46,7 @@ const topic = () => {
           onKeyUp={handleEnterClick}
           onChange={onInputChange}
           placeholder="AI, Machine Learning, ..."
+          disabled={generating}
         />
         <div>
           <button

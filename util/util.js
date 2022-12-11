@@ -39,3 +39,26 @@ export const uploadFileToFirebaseAndGetUrl = async (file) => {
   )
   return uploadedToUrl
 }
+
+export const treatRawQuizData = (quiz) => {
+  let newQuiz = quiz
+
+  //remove question from array if explanation or option is empty
+  newQuiz.questions = newQuiz.questions.filter((question) => {
+    return (
+      question.explanations.filter((explanation) => explanation !== '').length >
+        0 && question.options.filter((option) => option !== '').length > 0
+    )
+  })
+
+  newQuiz.questions.forEach((question) => {
+    const answerPosition = randomIntFromInterval(0, question.options.length - 1)
+    let rotatedOptions = rotateArray(question.options, answerPosition)
+    let rotatedExplanations = rotateArray(question.explanations, answerPosition)
+    question.options = rotatedOptions
+    question.explanations = rotatedExplanations
+    question.answerPosition = answerPosition
+  })
+  console.log('newQuiz', newQuiz)
+  return newQuiz
+}

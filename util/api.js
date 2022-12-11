@@ -7,7 +7,7 @@ export const generateQuizFromTopic = async (topic) => {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ text: topic, target_lang: 'en', num_questions: 3 })
+      body: JSON.stringify({ text: topic, target_lang: 'en', num_questions: 5 })
     }).then((res) => res.json())
     return response
   } catch (error) {

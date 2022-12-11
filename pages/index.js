@@ -16,7 +16,7 @@ export default function Home() {
         </h1>
         {/* subtitle */}
         <h2 className="text-2xl w-full text-center mt-4">
-          Generate Quizes and take a test
+          Generate Quizzes and take a test
         </h2>
         {/* scene image */}
         <div className="w-full flex flex-row justify-center items-center mt-10 w-full">
